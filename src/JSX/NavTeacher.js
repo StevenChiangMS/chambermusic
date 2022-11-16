@@ -8,7 +8,7 @@ function NavTeacher( { instrumentValues, clicked } ) {
   const instrument = instrumentValues.map((data, index) => {
     return (
     <li key={index} className="instrumentLi">
-      <Link className="link instrument" onClick={(e) => clicked(e)}>{data}</Link>
+      <Link className="link instrument">{data}</Link>
       <ul className="navTeacherUl">
         {teacher.map((value, valueIndex) => {
           if (value.instrument === data) {

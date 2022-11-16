@@ -23,7 +23,7 @@ function NavApp( {instrumentValues} ) {
           <ul>
     
             <li className="linkInstrument">
-              <Link className="linkTop" onClick={(e) => clicked(e)}>師資簡介</Link>
+              <Link className="linkTop">師資簡介</Link>
               <NavTeacher instrumentValues={instrumentValues} clicked={clicked} />
             </li>
                 
@@ -34,7 +34,7 @@ function NavApp( {instrumentValues} ) {
             </li> */}
     
             <li className="linkProgram">
-              <Link className="linkTop" onClick={(e) => clicked(e)}>營隊規劃</Link>
+              <Link className="linkTop">營隊規劃</Link>
               <ul>
                 <li>
                   <Link to="/Schedule" className="link navProgram" onClick={(e) => clicked(e)}>課程安排</Link>
@@ -50,7 +50,7 @@ function NavApp( {instrumentValues} ) {
             </li>
     
             <li className="linkSignUp">
-              <Link className="linkTop" onClick={(e) => clicked(e)}>報名專區</Link>
+              <Link className="linkTop">報名專區</Link>
               <ul>
                 <li>
                   <Link to="/SignUp" className="link navSignUp" onClick={(e) => clicked(e)}>線上報名</Link>
