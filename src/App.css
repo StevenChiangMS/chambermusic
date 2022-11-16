@@ -1,0 +1,1070 @@
+:root {
+  --main-bg-color: 	#ADADAD;
+  --font-color: #000;
+  --link-hover-color: #5E86C1;
+  --nav-color: rgba(173, 173, 173, 0.7);
+  --nav-sm-color: rgba(173, 173, 173, 1);
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --bigImg-bg-color: rgba(0, 0, 0, 0.6);
+  --close-font-color: #fff;
+  --yt-icon-color: #FF0000;
+  --downloadLink-color: #000;
+  --submit-bg-color: #fff;
+  --submit-hover-bg-color: #5E86C1;
+  --mark-font-color: #B22222;
+  --teacherIntroduction-font-color: #696969;
+  --payMode-color: #D94DFF;
+  --footer-hover-color: #BE77FF;
+}
+
+* {
+  user-select:none;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+}
+
+.routerContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.mainContainer {
+  flex: 1;
+}
+
+.redoIconContainer {
+  /* position: absolute;
+  z-index: 1;
+  top: 40%;
+  left: 50%;
+  height: 100%; */
+}
+
+svg {
+  width: 20px;
+  animation: redo infinite 1.5s linear;
+}
+
+@keyframes redo {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.teacherLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 60px 0;
+}
+
+.teacherLoading div {
+  width: 180px;
+  height: 30px;
+}
+
+.redoIcon {
+  margin-left: -60px;
+  margin-top: -7px;
+}
+
+/* container */
+
+.headerApp  { grid-area: header; }
+.navApp  { grid-area: nav; }
+.MainApp    { grid-area: main; }
+.footerApp  { grid-area: footer; }
+
+/* header */
+
+.headerApp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--main-bg-color);
+  z-index: 1;
+}
+
+.headerApp > a, .headerApp > a:hover {
+  text-decoration: none;
+  color: var(--font-color);
+}
+
+.headerimg {
+  width: 100px;
+}
+
+.headerH1 {
+  font-size: 2rem;
+}
+
+/* nav */
+
+#burger, .burger {
+  display: none;
+
+}
+.burger {
+  position: absolute;
+  cursor: pointer;
+  top: -98px;
+  right: 10%;
+  font-size: 50px;
+  color: var(--font-color);
+}
+
+.navApp {
+  position: sticky;
+  top: 100px;
+  background-color: var(--main-bg-color);
+  z-index: 1;
+}
+
+.navApp > ul {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.navApp > ul > li:not(:last-child) {
+  border-right: 1px solid var(--font-color);
+}
+
+.navApp > ul > li {
+  width:110px;
+  height: 24px;
+  text-align: center;
+  
+}
+
+.linkTop, .link {
+  text-decoration: none;
+  color: var(--font-color);
+}
+
+.instrumentLi {
+  height: 30px;
+  
+}
+
+.linkTop:hover, 
+.link:hover {
+  color: var(--link-hover-color);
+}
+
+.instrumentLi, 
+.navTeacher, 
+.navProgram,
+.navSignUp {
+  display: none;
+  font-size: 14px;
+}
+
+.instrumentLi, 
+.navProgram,
+.navSignUp {
+  position: relative;
+  left: -36px;
+  padding: 5px 0;
+}
+
+.navTeacher {
+  position: relative;
+  top: -29px;
+  left: 88px;
+  padding: 5px 0;
+}
+
+.instrumentLi:hover 
+.navTeacher {
+  display: block;
+  background-color: var(--nav-color);
+  width: 100px;
+}
+.linkInstrument:hover .instrumentLi, 
+.linkProgram:hover .navProgram,
+.linkSignUp:hover .navSignUp
+ {
+  display: block;
+  background-color: var(--nav-color);
+  width: 120px;
+}
+
+/* Main */
+
+.mainApp {
+  height: 100%;
+}
+
+/* teacher  */
+
+.teacherCard {
+  background-color: var(--main-bg-color);
+  color: var(--font-color);
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: 80%;
+  min-width: 800px;
+  max-width: 850px;
+  margin: 50px auto;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 1px 1px 10px 10px var(--shadow-color);
+  white-space: pre-line;
+}
+
+.smImgDiv {
+  margin-right: 30px;
+  width: 300px;
+  height: 100%;
+}
+
+.base64image {
+  cursor: pointer;
+  border-radius: 3px;
+  width: 300px;
+}
+
+.teacherName {
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+.teacherInstrument {
+  font-size: 18px;
+}
+
+.teacherIntroduction {
+  color: var(--teacherIntroduction-font-color);
+  width: 400px;
+  height: 100%;
+  font-size: 14px;
+  text-align: justify;
+}
+
+.bigImgDiv {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100%;
+  background-color: var(--bigImg-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.bigImg {
+  max-width: 80%;
+  max-height: 80%;
+  border: 1px solid var(--bigImg-border-color);
+  border-radius: 10px;
+  position: absolute;
+  top: 10%;
+}
+
+.close {
+  cursor: pointer;
+  padding-left: 3px;
+  width: 25px;
+  height: 25px;
+  color: var(--close-font-color);
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  border: 1px solid var(--bigImg-border-color);
+  border-radius: 20%;
+}
+
+.homeImg {
+  margin: -20px auto;
+}
+
+.bDiv {
+  float: right;
+}
+
+/* movie */
+
+.movie {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 150px;
+}
+
+.bi-youtube {
+  color: var(--yt-icon-color);
+}
+
+.movie > h2 {
+  position: absolute;
+  margin-top: 30px;
+}
+
+.movie > iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-width: 869px;
+  max-height: 545px;
+  margin-top: 100px;
+}
+
+/* schedule */
+
+.scheduleFirstH2 {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.schedule {
+  width: 100%;
+}
+
+.schedule h2 {
+  margin-bottom: 30px;
+}
+
+.summarySchedule {
+  padding: 25px 0;
+}
+
+.schedule div {
+  width: 600px;
+  margin: 0px auto;
+}
+
+.scheduleTable {
+  margin: 0px auto;
+  width: 100%;
+  border-spacing: 5px;
+  
+}
+
+.summaryDiv, .scheduleTable {
+  color: var(--teacherIntroduction-font-color);
+}
+
+.summaryH4-4-1, .summaryPiano {
+  color: var(--mark-font-color);
+  margin-top: 0px;
+}
+
+.scheduleTable thead tr th {
+  font-size: 1.3em;
+  color: var(--font-color);
+  padding-bottom: 10px;
+}
+
+.scheduleTable tbody tr td:not(:first-child), .scheduleTable thead tr th:not(:first-child) {
+  padding-left: 20px;
+}
+
+.scheduleTable tbody tr:nth-child(odd) {
+  background-color: var(--nav-color);
+}
+
+.summaryH4-6 {
+  font-size: 1em;
+  color: var(--mark-font-color);
+  margin-top: -50px;
+}
+
+/* Plan */
+
+.plan {
+  width: 600px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.plan h2 {
+  text-align: center;
+  margin: 50px auto 30px;
+}
+
+.planChild {
+  margin-bottom: 60px;
+  color: var(--teacherIntroduction-font-color);   
+}
+
+.two .beamed-eighth:before {
+  content: '\266B';
+  margin-right: 1em;
+}
+
+.two .beamed-eighth, .two .beamed-sixteenth {
+  margin-bottom: 10px;
+}
+
+.two .beamed-sixteenth:before {
+  content: '\266C';
+  margin-right: 1em;
+}
+
+.two .beamed-sixteenth {
+  font-size: 10px;
+}
+
+.plan ul .eighth:before {
+    content: '\266A';
+    margin-right: 1em;
+}
+
+.plan ul .quarter:before, .signUpMode li:before {
+  content: '\2669';
+  margin-right: 1em;
+}
+
+/* SignUpMethod */
+
+.signUpMethod {
+  width: 750px;
+  padding: 0 60px;
+  margin: 0 auto ;
+}
+
+.signUpMethodDiv  {
+  margin-bottom: 50px;
+}
+
+.signUpMethod h2 {
+  text-align: center;
+  margin: 50px 0 30px;
+}
+
+.signUpMethod address {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.pay h4, .pay h6 {
+  padding-bottom: 5px;
+}
+
+.pay h6 {
+  color: var(--link-hover-color);
+}
+
+.payDiv {
+  padding-bottom: 30px;
+}
+
+.payMode {
+  color: var(--payMode-color);
+}
+
+.sum {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.signUpMethodStar {
+  list-style-type: '\2605';
+  margin-left: -18px;
+  margin-top: 30px;
+}
+
+.signUpMethodNum {
+  list-style-type: decimal;
+  margin-left: -27px;
+  margin-top: 30px;
+}
+
+.signUpMethodCircle {
+  list-style-type: disc;
+  margin-bottom: 10px;
+}
+
+/* SignUp */
+
+.signUp h2 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.inputText {
+  border: 0px solid black;
+}
+
+.signUpForm {
+  max-width: 450px;
+  padding: 30px;
+  margin: 30px auto;
+  background-color: var(--main-bg-color);
+  color: var(--font-color);
+  border-radius: 20px;
+  box-shadow: 0 0 10px 10px var(--shadow-color);
+}
+
+.gender {
+  margin: 0 10px;
+}
+
+.city-selector-set {
+  margin-bottom: 10px;
+}
+
+.district {
+  margin: 0 10px;
+
+}
+
+.zipcode {
+  height: 26px;
+}
+
+.gradeDiv select {
+  margin-right: 10px;
+}
+
+.submitDiv {
+  text-align: center;
+}
+
+input[type="button"] {
+  background-color: var(--submit-bg-color);
+  color: var(--main-bg-color);
+  border: 0px;
+}
+
+input[type="button"]:hover {
+  background-color: var(--submit-hover-bg-color);
+}
+
+input[type="button"]:active {
+  position: relative;
+  top: 1px;
+}
+
+.signUpForm label:not(:first-child, .gender ) {
+  margin-top: 20px;
+  
+}
+
+.friend1 {
+  margin-left: 2.5px;
+}
+
+.remark {
+  color: var(--mark-font-color);
+  font-size: 10px;
+}
+
+.signUpForm label h4 p {
+  display: inline;
+  color: var(--mark-font-color);
+}
+
+.zip {
+  width: 80px;
+  height: 25px;
+}
+
+.agree {
+  display: flex;
+  margin: -10px auto 30px;
+  max-height: 80px;
+}
+
+.last {
+  width: 400px;
+}
+
+#agree {
+  margin-top: -16px;
+}
+
+/* InquireEdit */
+
+.inquireEdit h2 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.checkDB {
+  text-align: center;
+}
+
+.checkDB input {
+  border-radius: 5px;
+  border: 0px;
+}
+
+.inquireEditForm {
+  max-width: 450px;
+  padding: 30px;
+  margin: 30px auto;
+  background-color: var(--main-bg-color);
+  color: var(--font-color);
+  border-radius: 20px;
+  box-shadow: 0 0 10px 10px var(--shadow-color);
+}
+
+.inquireFormDate {
+  margin-bottom: 10px;
+}
+
+.inquireEdit div div {
+  width: 100%;
+}
+
+.changeFirend {
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+.first {
+  margin-left: 2px;
+}
+
+.changeInput, .notChangeInput {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.changeButton {
+  background-color: var(--submit-bg-color);
+  color: var(--main-bg-color);
+  border: 0px;
+  margin: 10px 0px;
+}
+
+.changeButton:hover {
+  background-color: var(--submit-hover-bg-color);
+}
+
+.changeButton:active {
+  position: relative;
+  top: 1px;
+}
+
+.inquireEditForm label h4 {
+  margin-right: 10px;
+  margin-bottom: 30px;
+}
+
+.changegradeDiv {
+
+  margin-bottom: 20px;
+}
+
+.changegradeDiv select {
+  margin-right: 10px;
+}
+
+/* Download */
+
+.download {
+  width: 550px;
+  margin: 50px auto;
+  padding: 0 30px;
+}
+
+.download h2 {
+  text-align: center;
+}
+
+.downloadLink {
+  color: var(--downloadLink-color);
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.download div {
+  margin-bottom: 20px;
+}
+
+.downloadLink:hover {
+  color: var(--link-hover-color);
+  font-size: 26px;
+}
+
+.bi-filetype-pdf, .bi-window {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+/* ContactUs */
+
+.contactUs h2 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.contactUsForm {
+  width: 450px;
+  padding: 30px;
+  margin: 30px auto;
+  background-color: var(--main-bg-color);
+  color: var(--font-color);
+  border-radius: 20px;
+  box-shadow: 0 0 10px 10px var(--shadow-color);
+}
+
+.contactUsForm label:not(:first-child) {
+  margin-top: 20px;  
+}
+
+.contactUsForm div {
+  text-align: center;
+  display: flex;
+  height: 30px;
+}
+
+.firstName {
+  margin-right: 30px;
+}
+
+.reqText {
+  min-height: 150px;
+  max-height: 150px;
+}
+
+.inputText {
+  width: 100%;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+/* footer */
+
+.footerApp {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 0;
+  background-color: var(--main-bg-color);
+  color: var(--font-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.footerApp .Co-organizer a, .footerPhone { 
+  color: var(--link-hover-color);
+  text-decoration: none;
+}
+
+.footerApp .Co-organizer a:hover, .footerIcon:hover, .footerPhone:hover { 
+  color: var(--footer-hover-color);
+}
+
+.footerIcon {
+  color: var(--link-hover-color);
+  font-size: 1.6em;
+  margin: 5px;
+}
+
+.phoneIcon {
+  margin: 0;
+  font-size: 1.1em;
+
+}
+
+.footerApp :nth-child(1) {
+  order: 2;
+}
+
+.footerApp :nth-child(2) {
+  order: 1;
+}
+
+.footerApp :nth-child(3) {
+  order: 3;
+}
+
+.footerApp div:not(h5) {
+  font-size: 0.7em;
+}
+
+
+
+/* RWD */
+
+@media screen and (max-width: 900px) {
+
+  /* nav */
+  
+  .burger {
+    display: block;
+    z-index: 1;
+  }
+
+  .navApp > ul {
+    display: none;
+    position: absolute;
+    top: -30px;
+    right: 10%;
+    width: 130px;
+    padding: 0;
+  }
+
+  .navApp > ul > li {
+    background-color: var(--nav-sm-color);
+    padding: 0 10px;
+    font-size: 1em;
+    width: 100%;
+    height: 40px;
+    border-right: 0px;
+  }
+
+  .instrumentLi {
+    font-size: 1em;
+    height: 40px;
+  }
+
+  .navTeacher  {
+    font-size: 1em;
+    height: 40px;
+
+  }
+
+  .navProgram, .navSignUp {
+    font-size: 1em;
+  }
+
+  .navApp > ul > li:not(:last-child) {
+    border-right: 0px;
+  }
+
+  #burger:checked + ul {  
+    display: block;
+  }
+
+  .instrumentLi:hover 
+  .navTeacher {
+    display: block;
+    background-color: var(--nav-sm-color);
+    left: -132px;
+    top: -32px;
+  }
+
+  .linkInstrument:hover .instrumentLi, 
+  .linkProgram:hover .navProgram,
+  .linkSignUp:hover .navSignUp {
+    display: block;
+    background-color: var(--nav-sm-color);
+    left: -162px;
+    top: -35px;
+  }
+
+  /* mainApp */
+
+  .mainApp * {
+    flex-wrap: wrap;
+  }
+
+  .homeImg {
+    margin: auto;
+  }
+
+  /* teacher  */
+
+  .teacherCard {
+    min-width: 620px;
+    padding: 50px;
+  }
+
+  .smImgDiv {
+    margin-right: 0;
+    width: 300px;
+  }
+
+  .teacherInstrument {
+    margin-top: 30px;
+  }
+
+  .teacherIntroduction {
+    width: 550px;
+    height: 100%;
+    font-size: 15px;
+  }
+
+  /* schedule */
+
+  .schedule div {
+    width: 595px;
+  }
+
+  /* SignUpMethod */
+
+  .signUpMethod {
+    width: 100%;
+    min-width: 400px;
+  }
+
+  /* SignUp */
+
+  .last {
+    width: 375px;
+  }
+
+  /* ContactUs */
+
+  .firstName {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .contactUsForm label:nth-child(3) {
+    margin-top: 60px;  
+  }
+
+
+
+}
+
+@media screen and (max-width: 650px) {
+
+  .burger {
+    right: 3%;
+  }
+
+  /* header */
+
+  .headerApp {
+    justify-content: flex-start;
+    padding-left: 1%;
+  }
+
+  .headerH1 {
+    font-size: 1.5rem;
+  }
+
+  /* teacher  */
+
+  .teacherCard {
+    min-width: 300px;
+    padding: 50px;
+  }
+
+  .smImgDiv {
+    margin-right: 0;
+    width: 100%;
+  }
+  
+  .base64image {
+    border-radius: 3px;
+    width: 100%;
+  }
+
+  .bigImgDiv {
+    width: 100%;
+  }
+
+  .teacherIntroduction {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  /* schedule */
+
+  .schedule div {
+    width: 300px;
+  }
+
+  /* Plan */
+
+  .plan {
+    width: 100%;
+  }
+
+  /* SignUp */
+
+  .signUpForm {
+    max-width: 350px;
+    font-size: 15px;
+  }
+
+  .agree {
+    margin: 0 auto 30px;
+    max-height: 80px;
+  }
+  
+  .last {
+    width: 275px;
+  }
+
+  #agree {
+    margin-top: -34px;
+  }
+
+    /* InquireEdit */
+
+    .inquireEdit {
+      max-width: 350px;
+      margin: 0 auto;
+    }
+
+    .changeInput .checkboxDiv {
+      font-size: 10px;
+    }
+
+    .changeFirend {
+      width: 93%;
+    }
+
+  /* Download */
+
+  .download {
+    width: 300px;
+  }
+
+  .downloadLink {
+    color: var(--downloadLink-color);
+    text-decoration: none;
+    font-size: 12px;
+  }
+
+  /* ContactUs */
+
+  .contactUsForm {
+    width: 350px;
+  }
+
+  /* footer */
+  .footerApp {
+    flex-direction: column;
+  }
+  
+  .footerApp :nth-child(1) {
+    order: 1;
+  }
+    
+  .footerApp :nth-child(2) {
+    order: 2;
+  }
+    
+  .footerApp :nth-child(3) {
+    order: 3;
+  }
+    
+  .footerApp div:not(h5) {
+    font-size: 0.3em;
+    gap: 100px;
+  }
+}
