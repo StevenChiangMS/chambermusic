@@ -29,9 +29,9 @@ function NavApp( {instrumentValues} ) {
                 
            
     
-            <li>
+            {/* <li>
                 <Link to="/Movie" className="linkTop" onClick={(e) => clicked(e)}>音樂營影片</Link>
-            </li>
+            </li> */}
     
             <li className="linkProgram">
               <Link className="linkTop" onClick={(e) => clicked(e)}>營隊規劃</Link>
