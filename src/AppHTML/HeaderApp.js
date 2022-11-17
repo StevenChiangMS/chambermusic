@@ -15,7 +15,6 @@ function HeaderApp() {
 
       <Link to="/" className="headerLink">
       <img  src="logo.PNG" alt="logo" className="headerimg" />
-      {/* <img  src="https://i.ibb.co/ZfFJDQg/logo.png" alt="logo" className="headerimg" /> */}
       </Link>
 
       <Link to="/" className="headerLink">

@@ -51,6 +51,7 @@ body {
 svg {
   width: 20px;
   animation: redo infinite 1.5s linear;
+  /* #BDBDBD */
 }
 
 @keyframes redo {
@@ -78,6 +79,7 @@ svg {
 .redoIcon {
   margin-left: -60px;
   margin-top: -7px;
+
 }
 
 /* container */
