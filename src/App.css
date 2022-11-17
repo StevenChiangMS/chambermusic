@@ -792,8 +792,9 @@ input[type="button"]:active {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  /* grid-row-start: 2;
+  grid-row-end: 3; */
+  font-size: 1.2em;
 }
 
 .footerApp .Co-organizer a, .footerPhone { 
@@ -807,7 +808,7 @@ input[type="button"]:active {
 
 .footerIcon {
   color: var(--link-hover-color);
-  font-size: 1.6em;
+  font-size: 2em;
   margin: 5px;
 }
 
@@ -1101,7 +1102,7 @@ input[type="button"]:active {
   }
     
   .footerApp div:not(h5) {
-    font-size: 0.3em;
+    font-size: 0.8em;
     gap: 100px;
   }
 }
