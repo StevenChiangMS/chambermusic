@@ -672,6 +672,38 @@ input[type="button"]:active {
   margin-right: 10px;
 }
 
+.changeSelect {
+  width: 100%;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 0px;
+}
+
+.changeGrade {
+  width: 45%;
+}
+
+.changeGrade:first-child {
+  margin: 0 5% 5% 0;
+}
+
+.changeGrade:nth-of-type(2) {
+  margin: 0 0 5% 5%;
+}
+
+.addressSelect {
+  width: 30%;
+  margin-bottom: 3%;
+}
+
+.addressSelect:nth-of-type(2) {
+  margin: 0 5%;
+}
+
+.changepayTeam {
+  margin: 20px 0;
+}
+
 /* Download */
 
 .download {
@@ -1000,6 +1032,10 @@ input[type="button"]:active {
     font-size: 15px;
   }
 
+  .paysize {
+    font-size: 10px;
+  }
+  
   .agree {
     margin: 0 auto 30px;
     max-height: 80px;
@@ -1007,12 +1043,13 @@ input[type="button"]:active {
   
   .last {
     width: 275px;
+    min-width: 210px;
   }
 
   #agree {
     margin-top: -34px;
   }
-
+  
     /* InquireEdit */
 
     .inquireEdit {

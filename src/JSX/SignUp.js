@@ -235,7 +235,7 @@ function SignUp( { instrumentValues } ) {
   const addressDiv = (
     
     <div className="city-selector-set">
-        <select className="county" 
+        <select className="county changeSelect addressSelect" 
         onChange={(e) => {
             setValue((prev) => {
               return {...prev, addressCounty: e.target.value}
@@ -243,7 +243,7 @@ function SignUp( { instrumentValues } ) {
           }}
         ></select>
 
-        <select className="district" 
+        <select className="district changeSelect addressSelect" 
         onChange={(e) => {
             setValue((prev) => {
               return {...prev, addressDistrict: e.target.value}
@@ -251,7 +251,7 @@ function SignUp( { instrumentValues } ) {
           }}
         ></select>
 
-        <input className="zipcode" type="text" size="7" maxLength="3" readOnly placeholder="郵遞區號" />
+        <input className="zipcode changeSelect addressSelect" type="text" size="7" maxLength="3" readOnly placeholder="郵遞區號" />
 
     </div>
   )
@@ -272,7 +272,7 @@ function SignUp( { instrumentValues } ) {
   const payTeamInstrument = state.payTeam.map((data, index) => {
     return (
       index <= 1 ? 
-    <div key={index} className="checkboxDiv">
+    <div key={index} className="checkboxDiv paysize">
       <input 
         type="checkbox" 
         id={"pay1-" + index}
@@ -283,7 +283,7 @@ function SignUp( { instrumentValues } ) {
       <label htmlFor={"pay1-" + index}>{data[0]}</label>
     </div>
     :
-    <div key={index} className="checkboxDiv">
+    <div key={index} className="checkboxDiv paysize">
       <input 
         type="checkbox" 
         id={"pay1-" + index}
@@ -298,7 +298,7 @@ function SignUp( { instrumentValues } ) {
   const payTeamPiano = state.payTeam.map((data, index) => {
     return (
       index <= 1 ?  
-      <div key={index} className="checkboxDiv">
+      <div key={index} className="checkboxDiv paysize">
       <input 
         type="checkbox" 
         id={"pay2-" + index}
@@ -309,7 +309,7 @@ function SignUp( { instrumentValues } ) {
       <label htmlFor={"pay2-" + index}>{data[1]}</label>
     </div>
     :
-    <div key={index} className="checkboxDiv">
+    <div key={index} className="checkboxDiv paysize">
       <input 
         type="checkbox" 
         id={"pay2-" + index}
@@ -335,7 +335,7 @@ function SignUp( { instrumentValues } ) {
   
   const massageJsx = state.massageText.map((data, index) => {
     return (
-    <div key={index}>
+    <div key={index} className="paysize">
       <input 
         type="checkbox" 
         id={index}
@@ -431,6 +431,7 @@ function SignUp( { instrumentValues } ) {
         {/* <div className="remark">請填寫XX年級升XX年級，填寫範例:小六升國一</div> */}
         <div className="gradeDiv">
           <select 
+                className="changeSelect changeGrade"
                 name="grade"
                 required={true} 
                 onChange={(e) => {
@@ -446,6 +447,7 @@ function SignUp( { instrumentValues } ) {
             <option name="grade" value="大學">大學</option>
           </select>
           <select 
+                className="changeSelect changeGrade"
                 name="graded"
                 required={true} 
                 onChange={(e) => {
@@ -507,8 +509,9 @@ function SignUp( { instrumentValues } ) {
           })} />
 
         <label><h4><p>*</p> 參加項目：</h4></label>
-          <div className="inputText instrument">
+          <div className="inputText instrument ">
             <select 
+              className="changeSelect"
               name="instrument"
               required={true} 
               onChange={(e) => {
@@ -551,32 +554,32 @@ function SignUp( { instrumentValues } ) {
 
         <label><h4>我想和好朋友住：</h4></label>
         <div className="remark">鋼琴組由主辦單位安排</div>
-        <div className="inputText friend1">
+        <div className="first">
           1.
           <input type="text" name="friend1" 
+          className="inputText changeFirend"
           onChange={(e) => setValue((prev) => {
             return {...prev, friend1: e.target.value}
           })} />
         </div>
-        <div className="inputText friend2">
           2.
           <input type="text" name="friend2" 
+          className="inputText changeFirend"
           onChange={(e) => setValue((prev) => {
             return {...prev, friend2: e.target.value}
           })} />
-        </div>
-        <div className="inputText friend3">
           3.
           <input type="text" name="friend3" 
+          className="inputText changeFirend"
           onChange={(e) => setValue((prev) => {
             return {...prev, friend3: e.target.value}
           })} />
-        </div>
 
         <label><h4><p>*</p> 是否有過敏或藥物治療中：</h4></label>
         <div className="remark">若填是，請於下方詳細說明</div>
         <div className="inputText disease" name="diseaseVerify">
             <select 
+              className="changeSelect"
               required={true} 
               name="diseaseVerify" 
               onChange={(e) => {
@@ -595,6 +598,7 @@ function SignUp( { instrumentValues } ) {
         <label><h4><p>*</p> 飲食：</h4></label>
         <div className="inputText food" name="food">
             <select 
+              className="changeSelect"
               required={true} 
               name="food" 
               onChange={(e) => {
@@ -628,6 +632,7 @@ function SignUp( { instrumentValues } ) {
         <label><h4><p>*</p> 衣服尺寸：</h4></label>
         <div className="inputText T-ShirtSize" name="T-ShirtSize">
             <select 
+              className="changeSelect"
               required={true} 
               name="T-ShirtSize" 
               onChange={(e) => {

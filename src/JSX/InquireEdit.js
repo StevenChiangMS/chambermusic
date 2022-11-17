@@ -9,7 +9,7 @@ function InquireEdit( { instrumentValues } ) {
   const mm = String(today.getMonth() + 1).padStart(2, '0');
   const dd = String(today.getDate()).padStart(2, '0');
   today = yyyy + "-" + mm + "-" + dd;
-
+  
   const [ id, setId ] = useState("");
   const [ state, setState ] = useState("");
   const [ isWriting, setIsWriting ] = useState(true);
@@ -57,7 +57,6 @@ function InquireEdit( { instrumentValues } ) {
       "以前參加過",
     ],
   });
-
   const inquireText = async () => {
     if (id === "" || id.length < 10) {
       return alert("身分證錯誤")
@@ -86,6 +85,9 @@ function InquireEdit( { instrumentValues } ) {
   };
 
   const outputText = async () => {
+
+    state.addressZip = element[0].value;
+
     fetch("/api/update/" + id, {
       method: "PUT",
       body: JSON.stringify({
@@ -97,7 +99,7 @@ function InquireEdit( { instrumentValues } ) {
     })
     .then((res) => {return res.json()})
     .then((data) => {
-      alert("已送出", data);
+      alert("已送出");
     })
     .catch((err) => console.log("error:", err));
   };
@@ -157,11 +159,13 @@ function InquireEdit( { instrumentValues } ) {
 
   const instrument = instrumentValues.map((data, index) => <option key={"instrument" + index} value={data} >{data}</option>)
 
+  let element= document.getElementsByClassName('zipcode');
+  
   const addressDiv = (
     <div className="city-selector-set-has-value">
         <select 
           data-value={state.addressCounty}
-          className="county"
+          className="county changeSelect addressSelect"
           disabled={isWriting} 
           onChange={(e) => {
             setState((prev) => {
@@ -171,8 +175,9 @@ function InquireEdit( { instrumentValues } ) {
         ></select>
         <select 
           data-value={state.addressDistrict}
-          className="district" 
+          className="district changeSelect addressSelect" 
           disabled={isWriting} 
+          
           onChange={(e) => {
           setState((prev) => {
               return {...prev, addressDistrict: e.target.value}
@@ -180,25 +185,36 @@ function InquireEdit( { instrumentValues } ) {
           }}
         ></select>
 
-        <input disabled={isWriting} className="zipcode" type="text" size="7" maxLength="3" readOnly placeholder="郵遞區號" />
+        <input 
+          disabled={isWriting} 
+          className="zipcode changeSelect addressSelect" 
+          type="text" size="7" 
+          maxLength="3"
+          readOnly 
+          placeholder="郵遞區號" />
 
     </div>
   )
+
   let level = [ "一年級", "二年級", "三年級", "四年級", "五年級", "六年級" ];
   const gradeMap = level.map((data, index) => {
+    
     if (state.grade === "國小") {
-      return <option key={index} name="graded" value={data}>{data}</option>
+      return <option key={"國小" + index} name="graded" value={data}>{data}</option>
     }else if ((state.grade === "國中" && index < 3) || (state.grade === "高中" && index < 3)) {
-      return <option key={index} name="graded" value={data}>{data}</option>
+      if ((state.grade === "國中" && index < 3)) {
+        return <option key={"國中" + index} name="graded" value={data}>{data}</option>
+      }
+      return <option key={"高中" + index} name="graded" value={data}>{data}</option>
     }else if ((state.grade === "大學" && index < 4 )|| (state.grade === "高中" && index < 3)) {
-      return <option key={index} name="graded" value={data}>{data}</option>
+      return <option key={"大學" + index} name="graded" value={data}>{data}</option>
     }else return null
   });
 
   const payTeamInstrument = inquire.payTeam.map((data, index) => {
     return (
       index <= 1 ? 
-        <div key={index} className="checkboxDiv">
+        <div key={index} className="checkboxDiv changepayTeam">
           <input 
             type="checkbox" 
             id={"pay1-" + index}
@@ -210,7 +226,7 @@ function InquireEdit( { instrumentValues } ) {
           <label htmlFor={"pay1-" + index}>{data[0]}</label>
         </div>
       :
-        <div key={index} className="checkboxDiv">
+        <div key={index} className="checkboxDiv changepayTeam">
           <input 
             type="checkbox" 
             id={"pay1-" + index}
@@ -226,7 +242,7 @@ function InquireEdit( { instrumentValues } ) {
   const payTeamPiano = inquire.payTeam.map((data, index) => {
     return (
        index <= 1 ?  
-      <div key={index} className="checkboxDiv">
+      <div key={index} className="checkboxDiv changepayTeam">
       <input 
         type="checkbox" 
         id={"pay2-" + index}
@@ -238,7 +254,7 @@ function InquireEdit( { instrumentValues } ) {
       <label htmlFor={"pay2-" + index}>{data[1]}</label>
     </div>
     :
-    <div key={index} className="checkboxDiv">
+    <div key={index} className="checkboxDiv changepayTeam">
       <input 
         type="checkbox" 
         id={"pay2-" + index}
@@ -267,7 +283,7 @@ function InquireEdit( { instrumentValues } ) {
 
 const massageJsx = inquire.massageText.map((data, index) => {
   return (
-  <div key={index}>
+  <div key={index} className="checkboxDiv changepayTeam">
     <input 
       type="checkbox" 
       id={index}
@@ -308,7 +324,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             姓名：
             <input 
               type="text"
-              className="changeInput"
+              className="inputText changeInput"
               required={true}
               disabled={isWriting} 
               value={state.name} 
@@ -321,14 +337,14 @@ const massageJsx = inquire.massageText.map((data, index) => {
           
           <div>
             性別： 
-            <input className="notChangeInput" type="text" disabled={true} value={state.gender}  />
+            <input className="inputText notChangeInput" type="text" disabled={true} value={state.gender}  />
           </div> 
 
           <div>
             Email： 
               <input 
                 type="text" 
-                className="changeInput"
+                className="inputText changeInput"
                 required={true}
                 disabled={isWriting} 
                 value={state.email} 
@@ -342,7 +358,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
           <div>
             生日： 
             <input 
-              className="changeInput" 
+              className="inputText changeInput" 
               required={true}
               disabled={isWriting} 
               value={state.birthday} 
@@ -359,7 +375,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             {addressDiv}
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               required={true}
               disabled={isWriting} 
               value={state.address} 
@@ -372,14 +388,14 @@ const massageJsx = inquire.massageText.map((data, index) => {
 
           <div>
             身分證字號： 
-            <input className="notChangeInput" type="text" disabled={true} value={state.id}  />
+            <input className="inputText notChangeInput" type="text" disabled={true} value={state.id}  />
           </div> 
 
           <div>
             護照拼音： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               required={true}
               disabled={isWriting} 
               value={state.roman} 
@@ -394,7 +410,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             就讀學校： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               required={true}
               disabled={isWriting} 
               value={state.school} 
@@ -407,8 +423,9 @@ const massageJsx = inquire.massageText.map((data, index) => {
 
           <div>
             年級： 
-              <div className="changegradeDiv">
+              <div>
                 <select 
+                  className="changeSelect changeGrade"
                   name="grade"
                   value={state.grade}
                   required={true} 
@@ -425,6 +442,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
                   <option name="grade" value="大學">大學</option>
                 </select>
                 <select 
+                  className="changeSelect changeGrade"
                   name="graded"
                   value={state.graded}
                   required={true} 
@@ -443,7 +461,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             家裡電話： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               required={true}
               disabled={isWriting} 
               value={state.phone} 
@@ -458,7 +476,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             父親姓名： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               disabled={isWriting} 
               value={state.fatherName} 
               onChange={(e) => {
@@ -472,7 +490,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             父親手機： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               disabled={isWriting} 
               value={state.fatherPhone} 
               onChange={(e) => {
@@ -486,7 +504,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             母親姓名： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               disabled={isWriting} 
               value={state.matherName} 
               onChange={(e) => {
@@ -500,7 +518,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             母親手機： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               disabled={isWriting} 
               value={state.matherPhone} 
               onChange={(e) => {
@@ -514,7 +532,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             學生手機： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               disabled={isWriting} 
               value={state.studentPhone} 
               onChange={(e) => {
@@ -528,7 +546,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             介紹人： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               disabled={isWriting} 
               value={state.introducer} 
               onChange={(e) => {
@@ -552,6 +570,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             }} /> */}
             <div className="changeInput">
             <select 
+              className="changeSelect"
               name="instrument"
               required={true}
               disabled={isWriting} 
@@ -570,7 +589,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             學習經驗： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               required={true}
               disabled={isWriting} 
               value={state.experience} 
@@ -585,7 +604,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             目前學的曲目： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               required={true}
               disabled={isWriting} 
               value={state.track} 
@@ -600,7 +619,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             指定個別課教授： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               disabled={isWriting} 
               value={state.specify} 
               onChange={(e) => {
@@ -626,7 +645,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
           <div className="first">
             1. <input 
               type="text"
-              className="changeFirend" 
+              className="inputText changeFirend" 
               disabled={isWriting} 
               value={state.friend1} 
               onChange={(e) => {
@@ -638,7 +657,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
 
           2. <input 
               type="text" 
-              className="changeFirend"
+              className="inputText changeFirend"
               disabled={isWriting} 
               value={state.friend2} 
               onChange={(e) => {
@@ -648,7 +667,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             }} />
           3. <input 
               type="text" 
-              className="changeFirend"
+              className="inputText changeFirend"
               disabled={isWriting} 
               value={state.friend3} 
               onChange={(e) => {
@@ -662,6 +681,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             <div className="remark">若填是，請於下方詳細說明</div>
             <div className="inputText disease" name="diseaseVerify">
               <select 
+                className="changeSelect"
                 value={state.diseaseVerify}
                 required={true} 
                 disabled={isWriting} 
@@ -688,6 +708,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
           飲食：
           <div className="changeInput">
             <select 
+              className="changeSelect"
               required={true} 
               disabled={isWriting} 
               value={state.food} 
@@ -709,7 +730,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             身高： 
             <input 
               type="text" 
-              className="changeInput"
+              className="inputText changeInput"
               required={true}
               disabled={isWriting} 
               value={state.height} 
@@ -724,7 +745,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             體重： 
             <input 
               type="text"
-              className="changeInput"
+              className="inputText changeInput"
               required={true}
               disabled={isWriting} 
               value={state.weight} 
@@ -739,6 +760,7 @@ const massageJsx = inquire.massageText.map((data, index) => {
             衣服尺寸：
           <div className="changeInput">
             <select 
+              className="changeSelect"
               value={state.TShirtSize}
               required={true} 
               disabled={isWriting} 
