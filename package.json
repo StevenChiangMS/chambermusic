@@ -1,6 +1,7 @@
 {
   "name": "chambermusic",
   "version": "0.1.0",
+  "homepage": ".",
   "proxy": "http://34.80.2.124:8080/",
   "private": true,
   "dependencies": {
