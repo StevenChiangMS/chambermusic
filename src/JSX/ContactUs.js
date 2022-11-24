@@ -8,6 +8,7 @@ function ContactUs() {
     email: "",
     phone: "",
     reqText: "",
+    isProcessing: true,
     reqCode: true,
   });
   const contactUsText = () => {
@@ -20,6 +21,7 @@ function ContactUs() {
         email: value.email,
         phone: value.phone,
         reqText: value.reqText,
+        isProcessing: value.isProcessing,
         reqCode: value.reqCode,
       }),
       headers: {
